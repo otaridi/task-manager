@@ -8,6 +8,16 @@
 .board{
     height: 76vh;
     border: 1px solid gray;
+    overflow-y: auto;
+}
+.boardBacklog{
+    background-color: #fff5f5;
+}
+.boardProgress{
+    background-color: #e2fcff;
+}
+.boardDone{
+    background-color: #ebffe9;
 }
 .dashboardContainer section h2{
     margin: 5px;

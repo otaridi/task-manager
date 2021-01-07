@@ -1,6 +1,10 @@
 .cartContainer{
     width: 90%;
     margin: 10px auto;
-    height: 50px;
-    border: 1px solid red;
+    background-color: white;
+}
+.cart{
+    border: 1px solid #a59e9e;
+    margin:12px 0;
+    cursor: pointer;
 }
