@@ -1,0 +1,6 @@
+.cartContainer{
+    width: 90%;
+    margin: 10px auto;
+    height: 50px;
+    border: 1px solid red;
+}

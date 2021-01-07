@@ -1,10 +1,13 @@
 import React from 'react'
 import './App.css';
+import Header from "./components/header/Header";
+import Dashboard from "./components/dashboard/Dashboard";
 
 function App() {
   return (
     <div>
-       <h1>Task manager</h1>
+        <Header />
+        <Dashboard />
     </div>
   );
 }

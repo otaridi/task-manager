@@ -1,0 +1,15 @@
+.dashboardContainer{
+    width: 90%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 6%;
+}
+.board{
+    height: 76vh;
+    border: 1px solid gray;
+}
+.dashboardContainer section h2{
+    margin: 5px;
+    text-align: center;
+}

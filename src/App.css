@@ -7,3 +7,29 @@ html, body{
   padding: 0;
   font-family: 'Roboto', sans-serif;
 }
+#modal {
+  background-color: rgba(176, 198, 221, 0.4);
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: scale-up-center 0.1s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+
+#modal:empty {
+  display: none;
+}
+
+#modal > div {
+  background-color: white;
+  border: 1px solid gray;
+  width: 400px;
+  padding: 15px;
+  border-radius: 5px;
+  text-align: center;
+}
