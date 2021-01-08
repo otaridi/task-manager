@@ -2,9 +2,19 @@
     width: 90%;
     margin: 10px auto;
     background-color: white;
+    border: 1px solid #a59e9e;
+    cursor: pointer;
+    border-radius: 2px;
 }
 .cart{
-    border: 1px solid #a59e9e;
-    margin:12px 0;
-    cursor: pointer;
+    padding: 10px;
+}
+.cart h5{
+    margin: 5px auto;
+}
+.cart p{
+    margin: 10px auto;
+}
+.cart:hover{
+    box-shadow: 0px 0px 12px -5px rgba(0,0,0,0.75);
 }

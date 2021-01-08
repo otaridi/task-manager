@@ -9,8 +9,8 @@ const Cart = ({value})=>{
     return (
         <div className={style.cartContainer}>
             <section className={style.cart} onClick={toggleModal}>
-                <h3>{value.title}</h3>
-                <h3>{value.description}</h3>
+                <h5>{value.title}</h5>
+                <p>{value.description}</p>
             </section>
             {
                 showModal ?

@@ -9,6 +9,8 @@
 }
 .header input{
     height: 30px;
+    padding: 5px 10px;
+    outline: none;
 }
 .header h3{
     margin: 0;
@@ -16,8 +18,11 @@
 .body textarea{
     width: 90%;
     height: 150px;
+    padding: 5px 10px;
     resize: none;
     margin-bottom: 20px;
+    outline: none;
+    border-radius: 2px;
 }
 .buttons button{
     height: 30px;
@@ -34,4 +39,8 @@ select{
 }
 option {
     height: 30px;
+}
+.warning{
+    border: 1px solid red;
+    border-radius: 2px;
 }

@@ -12,6 +12,7 @@ const emptyForm = {
 const CartModal = ({toggleModal, values}) => {
     const [formFields, setFormFields] = useState(values ? values : emptyForm)
     const {cart, dispatch} = useCart()
+    const [warning, setWarning] = useState(false)
 
     function handleChange(e) {
         e.persist()
@@ -23,9 +24,16 @@ const CartModal = ({toggleModal, values}) => {
         })
     }
 
+    const handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault()
+        }
+    }
+
     function formSubmit(e) {
         const {title, description, status} = formFields
         if (title.length === 0 || description.length === 0) {
+            setWarning(true)
             e.preventDefault()
         }
         // add new task
@@ -43,16 +51,20 @@ const CartModal = ({toggleModal, values}) => {
     return (
         <div className={style.modalContainer}>
             <div className={style.modalCart}>
-                <form onSubmit={formSubmit}>
+                <form onSubmit={formSubmit} onKeyPress={handleKeyPress}>
                     <section className={style.header}>
                         <input type="text" value={formFields.title}
                                placeholder='title' id='title' onChange={handleChange}
-                               autoComplete='off'/>
+                               autoComplete='off'
+                               className={warning && formFields.title.length === 0? style.warning:''}
+                        />
                         <h3>{values ? 'Edit task' : 'New task'}</h3>
                     </section>
                     <section className={style.body}>
                         <textarea placeholder='description' id='description' onChange={handleChange}
-                                  value={formFields.description}/>
+                                  value={formFields.description}
+                               className={warning && formFields.description.length === 0?  style.warning:''}
+                        />
                     </section>
                     <section className={style.footer}>
                         <select id='status' value={formFields.status} onChange={handleChange}>

@@ -15,7 +15,7 @@ const Dashboard = () => {
         // <DndProvider backend={Backend}>
         <div className={style.dashboardContainer}>
             <section>
-                <h2>backlog</h2>
+                <h2>Backlog</h2>
                 <div className={`${style.boardBacklog} ${style.board}`}>
                     {backlogCarts.map(el=>{
                             return <Cart key={el.id} value={el} />
@@ -23,7 +23,7 @@ const Dashboard = () => {
                 </div>
             </section>
             <section>
-                <h2>in progress</h2>
+                <h2>In progress</h2>
                 <div className={`${style.boardProgress} ${style.board}`}>
                     {inProgressCarts.map(el=>{
                         return <Cart key={el.id} value={el} />
@@ -31,7 +31,7 @@ const Dashboard = () => {
                 </div>
             </section>
             <section>
-                <h2>done</h2>
+                <h2>Done</h2>
                 <div className={`${style.boardDone} ${style.board}`}>
                     {doneCarts.map(el=>{
                         return <Cart key={el.id} value={el} />

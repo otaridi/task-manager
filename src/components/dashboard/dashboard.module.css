@@ -7,19 +7,48 @@
 }
 .board{
     height: 76vh;
-    border: 1px solid gray;
     overflow-y: auto;
 }
 .boardBacklog{
     background-color: #fff5f5;
+    border: 1px solid #dda2a2;
+
 }
 .boardProgress{
     background-color: #e2fcff;
+    border: 1px solid #98c3e7;
+
 }
 .boardDone{
     background-color: #ebffe9;
+    border: 1px solid #94e396;
+
 }
 .dashboardContainer section h2{
     margin: 5px;
     text-align: center;
 }
+/* SCROLLBAR */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+::-webkit-scrollbar-track:hover{
+    width: 20px;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #d6d2d2;
+    border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #999898;
+    width: 15px;
+}
+/*=============================*/
