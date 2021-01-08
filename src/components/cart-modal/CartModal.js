@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import style from './cartModal.module.css'
 import {useCart} from "../../context/cartContext";
+import * as actions from '../../reducers/cartActions'
 
 const emptyForm = {
     title: '',
@@ -9,12 +10,12 @@ const emptyForm = {
 }
 
 const CartModal = ({toggleModal, values}) => {
-    const [body, setBody] = useState(values ? values : emptyForm)
+    const [formFields, setFormFields] = useState(values ? values : emptyForm)
     const {cart, dispatch} = useCart()
 
     function handleChange(e) {
         e.persist()
-        setBody(currValue => {
+        setFormFields(currValue => {
             return {
                 ...currValue,
                 [e.target.id]: e.target.value
@@ -23,18 +24,18 @@ const CartModal = ({toggleModal, values}) => {
     }
 
     function formSubmit(e) {
-        const {title, description, status} = body
+        const {title, description, status} = formFields
         if (title.length === 0 || description.length === 0) {
             e.preventDefault()
         }
         // add new task
         if (title && description && !values) {
-            dispatch({type: 'add', title, description, status, id: cart.length + 1})
+            dispatch({type: actions.ADD, title, description, status, id: cart.length + 1})
             toggleModal()
         }
         // edit task
         if (values && title.length > 0 && description.length > 0) {
-            dispatch({type: 'edit', title, description, status, id: values.id})
+            dispatch({type: actions.EDIT, title, description, status, id: values.id})
             toggleModal()
         }
     }
@@ -44,23 +45,27 @@ const CartModal = ({toggleModal, values}) => {
             <div className={style.modalCart}>
                 <form onSubmit={formSubmit}>
                     <section className={style.header}>
-                        <input type="text" value={body.title}
+                        <input type="text" value={formFields.title}
                                placeholder='title' id='title' onChange={handleChange}
                                autoComplete='off'/>
                         <h3>{values ? 'Edit task' : 'New task'}</h3>
                     </section>
                     <section className={style.body}>
-                        <textarea placeholder='body' id='description' onChange={handleChange}
-                                  value={body.description}/>
+                        <textarea placeholder='description' id='description' onChange={handleChange}
+                                  value={formFields.description}/>
                     </section>
                     <section className={style.footer}>
-                        <select id='status' value={body.status} onChange={handleChange}>
+                        <select id='status' value={formFields.status} onChange={handleChange}>
                             <option value="backlog">Backlog</option>
                             <option value="progress">In progress</option>
                             <option value="done">Done</option>
                         </select>
                         <section className={style.buttons}>
                             <button onClick={toggleModal}>cancel</button>
+                            {values && <button onClick={() => dispatch({
+                                type: actions.DELETE,
+                                id: values.id
+                            })}>remove</button>}
                             <button>{values ? 'Edit' : 'Add'}</button>
                         </section>
                     </section>

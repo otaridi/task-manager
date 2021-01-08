@@ -1,9 +1,13 @@
+import * as actions from './cartActions'
+
 export default function cartReducer(cart, action){
     switch (action.type) {
-        case 'add':
+        case actions.ADD:{
+            // add new cart
             const {title, description, status, id} = action
             return [...cart, {title, description, status,id}]
-        case 'edit': {
+        }
+        case actions.EDIT: {
             const {title, description, status, id} = action
             // find cart with id
             const itemInCart = cart.find(el => el.id ===id)
@@ -15,7 +19,12 @@ export default function cartReducer(cart, action){
                 return [...cart, {title,description,status,id}]
             }
         }
+        case actions.DELETE:{
+            // filter with id
+            return cart.filter(el=>el.id !== action.id)
+        }
         default:
+            // if action type dont match throw this error
             throw new Error('Unhandled action ' + action.type)
     }
 }
