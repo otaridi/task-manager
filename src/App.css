@@ -41,3 +41,9 @@ html, body{
   border-radius: 5px;
   text-align: center;
 }
+/* carts column */
+.drop-wrapper {
+  height: 81vh;
+  display: flex;
+  flex-direction: column;
+}

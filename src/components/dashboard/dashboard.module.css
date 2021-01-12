@@ -1,30 +1,29 @@
 .dashboardContainer{
-    width: 90%;
+    width: 80%;
     margin: auto;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 6%;
 }
 .board{
-    height: 76vh;
+    height: 82vh;
     overflow-y: auto;
 }
-.boardBacklog{
+.backlog{
     background-color: #fff5f5;
     border: 1px solid #dda2a2;
-
 }
-.boardProgress{
+.progress{
     background-color: #e2fcff;
     border: 1px solid #98c3e7;
 
 }
-.boardDone{
+.done{
     background-color: #ebffe9;
     border: 1px solid #94e396;
 
 }
-.dashboardContainer section h2{
+.dashboardContainer  h2{
     margin: 5px;
     text-align: center;
 }
@@ -52,3 +51,9 @@
     width: 15px;
 }
 /*=============================*/
+@media only screen and (max-width: 900px) {
+   .dashboardContainer{
+       width: 92%;
+       grid-gap: 4%;
+   }
+}

@@ -48,26 +48,32 @@ const CartModal = ({toggleModal, values}) => {
         }
     }
 
+    const blurHandle = ()=>{
+    //    TODO
+    }
     return (
         <div className={style.modalContainer}>
             <div className={style.modalCart}>
+                {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
                 <form onSubmit={formSubmit} onKeyPress={handleKeyPress}>
                     <section className={style.header}>
                         <input type="text" value={formFields.title}
-                               placeholder='title' id='title' onChange={handleChange}
+                               placeholder='Title' id='title' onChange={handleChange}
+                               onBlur={blurHandle}
                                autoComplete='off'
                                className={warning && formFields.title.length === 0? style.warning:''}
                         />
                         <h3>{values ? 'Edit task' : 'New task'}</h3>
                     </section>
                     <section className={style.body}>
-                        <textarea placeholder='description' id='description' onChange={handleChange}
+                        <textarea placeholder='Description' id='description' onChange={handleChange}
+                                  onBlur={blurHandle}
                                   value={formFields.description}
                                className={warning && formFields.description.length === 0?  style.warning:''}
                         />
                     </section>
                     <section className={style.footer}>
-                        <select id='status' value={formFields.status} onChange={handleChange}>
+                        <select id='status' value={formFields.status} onBlur={blurHandle} onChange={handleChange}>
                             <option value="backlog">Backlog</option>
                             <option value="progress">In progress</option>
                             <option value="done">Done</option>

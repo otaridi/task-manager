@@ -8,9 +8,10 @@
     justify-content: space-between;
 }
 .header input{
-    height: 30px;
+    height: 35px;
     padding: 5px 10px;
     outline: none;
+    font-size: 1rem;
 }
 .header h3{
     margin: 0;
@@ -23,6 +24,7 @@
     margin-bottom: 20px;
     outline: none;
     border-radius: 2px;
+    font-size: 1.2rem;
 }
 .buttons button{
     height: 30px;
