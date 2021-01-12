@@ -48,44 +48,51 @@ const CartModal = ({toggleModal, values}) => {
         }
     }
 
-    const blurHandle = ()=>{
-    //    TODO
+    const blurHandle = () => {
+        //    TODO
     }
     return (
         <div className={style.modalContainer}>
             <div className={style.modalCart}>
                 {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
-                <form onSubmit={formSubmit} onKeyPress={handleKeyPress}>
+                <form onSubmit={formSubmit}>
+
                     <section className={style.header}>
                         <input type="text" value={formFields.title}
+                               onKeyPress={handleKeyPress}
                                placeholder='Title' id='title' onChange={handleChange}
                                onBlur={blurHandle}
                                autoComplete='off'
-                               className={warning && formFields.title.length === 0? style.warning:''}
+                               className={warning && formFields.title.length === 0 ? style.warning : ''}
                         />
                         <h3>{values ? 'Edit task' : 'New task'}</h3>
                     </section>
+
                     <section className={style.body}>
                         <textarea placeholder='Description' id='description' onChange={handleChange}
                                   onBlur={blurHandle}
                                   value={formFields.description}
-                               className={warning && formFields.description.length === 0?  style.warning:''}
+                                  className={warning && formFields.description.length === 0 ? style.warning : ''}
                         />
                     </section>
+
                     <section className={style.footer}>
-                        <select id='status' value={formFields.status} onBlur={blurHandle} onChange={handleChange}>
+                        <select id='status' className={style.select} value={formFields.status}
+                                onBlur={blurHandle} onChange={handleChange}>
                             <option value="backlog">Backlog</option>
                             <option value="progress">In progress</option>
                             <option value="done">Done</option>
                         </select>
+
                         <section className={style.buttons}>
-                            <button onClick={toggleModal}>cancel</button>
-                            {values && <button onClick={() => dispatch({
+                            <button className={style.cancelBtn} onClick={toggleModal}>Cancel</button>
+                            {values && <button className={style.removeBtn} onClick={() => dispatch({
                                 type: actions.DELETE,
                                 id: values.id
-                            })}>remove</button>}
-                            <button>{values ? 'Edit' : 'Add'}</button>
+                            })}>Delete</button>}
+                            <button className={style.addBtn}>{values ? 'Edit' : 'Add'}</button>
                         </section>
+
                     </section>
                 </form>
             </div>

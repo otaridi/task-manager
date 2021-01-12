@@ -32,17 +32,63 @@
     cursor: pointer;
     margin-left: 10px;
 }
+.cancelBtn{
+    outline: none;
+}
+.cancelBtn:hover{
+    color: red;
+    border: 1px solid #661d1d;
+    border-radius: 2px;
+}
+.removeBtn{
+    outline: none;
+}
+.removeBtn:hover{
+    color: brown;
+    border: 1px solid #661d1d;
+    border-radius: 2px;
+}
+.addBtn{
+    outline: none;
+}
+.addBtn:hover{
+  color: green;
+    border: 1px solid green;
+    border-radius: 2px;
+}
 .footer{
     display:flex;
     justify-content: space-between;
 }
-select{
+.select{
+    display: block;
     cursor: pointer;
+    width: 100px;
+    outline: none;
+    border: 1px solid gray;
+    border-radius: 2px;
+    background-color: #f8f6f6;
 }
-option {
-    height: 30px;
+.select:hover{
 }
+.select option {
+    font-size: 1rem;
+    width: 100px;
+}
+.select option[value="backlog"] {
+    background: #f6b6b6;
+    /*color: #a22a2a;*/
+}
+.select option[value="progress"] {
+    background: #c2f1f6;
+    /*color: #0c7bd7;*/
+}
+.select option[value="done"] {
+    background: #b1f5a9;
+    /*color: #06a70a;*/
+}
+
 .warning{
-    border: 1px solid red;
+    border: 2px solid #ec6d6d;
     border-radius: 2px;
 }
