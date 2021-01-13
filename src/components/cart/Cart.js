@@ -8,11 +8,10 @@ import {useDrag, useDrop} from 'react-dnd'
 
 
 // eslint-disable-next-line no-unused-vars
-const Cart = ({item, index, moveItem, canDrop, isOver}) => {
+const Cart = ({item, index, moveItem, isOver,status}) => {
     const {showModal, toggleModal} = useModal()
     //=================================
     const ref = useRef(null)
-    // eslint-disable-next-line no-unused-vars
     const [, drop] = useDrop({
         accept: ITEM_TYPE,
         hover(item, monitor) {
@@ -34,9 +33,10 @@ const Cart = ({item, index, moveItem, canDrop, isOver}) => {
             if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
                 return;
             }
-            moveItem(dragIndex, hoverIndex)
+                                 // column status which hovered by selected cart
+            moveItem(dragIndex, hoverIndex,status)
             item.index = hoverIndex
-        }
+        },
     })
     // eslint-disable-next-line no-unused-vars
     const [{isDragging}, drag] = useDrag({

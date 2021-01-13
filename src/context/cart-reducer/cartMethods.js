@@ -17,13 +17,12 @@ const dropCart = (cart,action)=>{
     return cart.map(el => el.id === id ? {...el, status} : el)
 }
 const moveCart = (cart,action)=>{
-    const {hoverIndex, dragIndex, item} = action
-    // console.log(cart[hoverIndex])
-    // const sameStatus = cart.filter(el => el.status === item.status)
-    // const filtered = cart.filter(el => el.status !== item.status)
-    const movedCarts = cart.filter((el, i) => i !== dragIndex)
-    movedCarts.splice(hoverIndex, 0, item)
-    return [...movedCarts]
+    const {hoverIndex, dragIndex, selectedCart,columnStatus} = action
+    const differentStatusCarts = cart.filter(el => el.status !== selectedCart.status)
+    const currentColumn = cart.filter(el=>el.status === columnStatus)
+    const movedCarts = currentColumn.filter((el, i) => i !== dragIndex)
+    movedCarts.splice(hoverIndex, 0, selectedCart)
+    return [...differentStatusCarts,...movedCarts]
 }
 
 export  {

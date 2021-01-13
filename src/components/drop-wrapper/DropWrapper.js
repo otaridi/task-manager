@@ -23,7 +23,7 @@ const DropWrapper = ({onDrop, children, status})=>{
 
     return (
         <div ref={drop} className='drop-wrapper'>
-            { React.Children.map(children, (child) => React.cloneElement(child, {isOver,canDrop}))}
+            { React.Children.map(children, (child) => React.cloneElement(child, {isOver,canDrop,status}))}
         </div>
     )
 }

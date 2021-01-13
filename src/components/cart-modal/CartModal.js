@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import style from './cartModal.module.css'
 import {useCart} from "../../context/cartContext";
-import * as actions from '../../reducers/cartActions'
+import * as actions from '../../context/cart-reducer/cartActions'
 import {statuses} from "../dashboard/dashboardStatus";
 
 

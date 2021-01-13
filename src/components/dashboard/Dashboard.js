@@ -1,10 +1,12 @@
 import React from 'react'
+import {DndProvider} from 'react-dnd'
+import {HTML5Backend} from 'react-dnd-html5-backend'
 import style from './dashboard.module.css'
 import {statuses} from "./dashboardStatus";
 import Cart from "../cart/Cart";
 import DropWrapper from "../drop-wrapper/DropWrapper";
 import {useCart} from "../../context/cartContext";
-import * as actions from '../../reducers/cartActions'
+import * as actions from '../../context/cart-reducer/cartActions'
 
 
 const Dashboard = () => {
@@ -17,41 +19,45 @@ const Dashboard = () => {
             id: item.id
         })
     }
-
-    const moveItem = (dragIndex, hoverIndex) => {
-        const item = cart[dragIndex]
+    // eslint-disable-next-line no-unused-vars
+    const moveItem = (dragIndex, hoverIndex, columnStatus) => {
+        const selectedCart = cart.filter(el => el.status === columnStatus)[dragIndex]
         dispatch({
             type: actions.MOVE,
-            item,
+            selectedCart,
             dragIndex,
-            hoverIndex
+            hoverIndex,
+            columnStatus
         })
     }
 
+
     return (
-        <div className={style.dashboardContainer}>
-            {
-                statuses.map(el => {
-                    return <div key={el.status}>
-                        <h2>{el.status.toUpperCase()}</h2>
-                        <div className={`${style.board} ${style[el.status]}`}>
-                            <DropWrapper onDrop={onDrop} status={el.status}>
+        <DndProvider backend={HTML5Backend}>
+            <div className={style.dashboardContainer}>
+                {
+                    statuses.map(el => {
+                        return <div key={el.status}>
+                            <h2>{el.status.toUpperCase()}</h2>
+                            <div className={`${style.board} ${style[el.status]}`}>
+                                <DropWrapper onDrop={onDrop} status={el.status} >
                                     {
                                         cart.filter(i => i.status === el.status)
-                                            .map((element, i) => {
-                                                return <Cart key={element.id} item={element}
-                                                             index={i}
+                                            .map((item, index) => {
+                                                return <Cart key={item.id} item={item}
+                                                             index={index}
                                                              moveItem={moveItem}
-
                                                 />
                                             })
                                     }
-                            </DropWrapper>
+                                </DropWrapper>
+                            </div>
                         </div>
-                    </div>
-                })
-            }
-        </div>
+                    })
+                }
+            </div>
+        </DndProvider>
+
     )
 }
 
