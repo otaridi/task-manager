@@ -2,6 +2,8 @@ import React, {useState} from "react";
 import style from './cartModal.module.css'
 import {useCart} from "../../context/cartContext";
 import * as actions from '../../reducers/cartActions'
+import {statuses} from "../dashboard/dashboardStatus";
+
 
 const emptyForm = {
     title: '',
@@ -10,6 +12,7 @@ const emptyForm = {
 }
 
 const CartModal = ({toggleModal, values}) => {
+
     const [formFields, setFormFields] = useState(values ? values : emptyForm)
     const {cart, dispatch} = useCart()
     const [warning, setWarning] = useState(false)
@@ -38,7 +41,10 @@ const CartModal = ({toggleModal, values}) => {
         }
         // add new task
         if (title && description && !values) {
-            dispatch({type: actions.ADD, title, description, status, id: cart.length + 1})
+            // finds max id from cart
+            const ids = cart.map(el=>el.id)
+            const id = Math.max(...ids) + 1
+            dispatch({type: actions.ADD, title, description, status, id})
             toggleModal()
         }
         // edit task
@@ -76,16 +82,18 @@ const CartModal = ({toggleModal, values}) => {
                         />
                     </section>
 
-                    <section className={style.footer}>
+                    <section className={style.cartFooter}>
+
                         <select id='status' className={style.select} value={formFields.status}
                                 onBlur={blurHandle} onChange={handleChange}>
-                            <option value="backlog">Backlog</option>
-                            <option value="progress">In progress</option>
-                            <option value="done">Done</option>
+                            {statuses.map(el =>
+                                <option key={el.status} value={el.status}>{el.status}</option>
+                            )}
                         </select>
 
                         <section className={style.buttons}>
-                            <button className={style.cancelBtn} onClick={toggleModal}>Cancel</button>
+                            <button className={style.cancelBtn} onClick={toggleModal}>Cancel
+                            </button>
                             {values && <button className={style.removeBtn} onClick={() => dispatch({
                                 type: actions.DELETE,
                                 id: values.id

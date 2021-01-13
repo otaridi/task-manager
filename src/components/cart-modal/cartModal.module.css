@@ -56,7 +56,7 @@
     border: 1px solid green;
     border-radius: 2px;
 }
-.footer{
+.cartFooter{
     display:flex;
     justify-content: space-between;
 }

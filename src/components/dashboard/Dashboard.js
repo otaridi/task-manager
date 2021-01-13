@@ -13,8 +13,6 @@ const Dashboard = () => {
     const onDrop = (item, monitor, status) => {
         dispatch({
             type: actions.DROP,
-            title: item.title,
-            description: item.description,
             status,
             id: item.id
         })
