@@ -42,8 +42,8 @@ const CartModal = ({toggleModal, values}) => {
         // add new task
         if (title && description && !values) {
             // finds max id from cart
-            const ids = cart.map(el=>el.id)
-            const id = Math.max(...ids) + 1
+            const ids = cart.map(el => el.id)
+            const id = ids.length === 0 ? 1 : Math.max(...ids) + 1
             dispatch({type: actions.ADD, title, description, status, id})
             toggleModal()
         }
