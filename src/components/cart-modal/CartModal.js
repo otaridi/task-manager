@@ -41,15 +41,17 @@ const CartModal = ({toggleModal, values}) => {
         }
         // add new task
         if (title && description && !values) {
+            const date = new Date().toLocaleDateString()
             // finds max id from cart
             const ids = cart.map(el => el.id)
             const id = ids.length === 0 ? 1 : Math.max(...ids) + 1
-            dispatch({type: actions.ADD, title, description, status, id})
+            dispatch({type: actions.ADD, title, description, status, id, date})
             toggleModal()
         }
         // edit task
         if (values && title.length > 0 && description.length > 0) {
-            dispatch({type: actions.EDIT, title, description, status, id: values.id})
+            const date = new Date().toLocaleDateString()
+            dispatch({type: actions.EDIT, title, description, status, id: values.id,date})
             toggleModal()
         }
     }
@@ -80,7 +82,9 @@ const CartModal = ({toggleModal, values}) => {
                                   className={warning && formFields.description.length === 0 ? style.warning : ''}
                         />
                     </section>
-
+                     <section className={style.createDate}>
+                         {values? <h5>Created: {values.date}</h5>:null}
+                     </section>
                     <section className={style.cartFooter}>
 
                         <select id='status' className={style.select} value={formFields.status}

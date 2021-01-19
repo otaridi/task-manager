@@ -6,8 +6,9 @@
     grid-gap: 6%;
 }
 .board{
-    height: 82vh;
+    height: 84vh;
     overflow-y: auto;
+    margin-top: 40px;
 }
 .backlog{
     background-color: #fff5f5;

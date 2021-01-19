@@ -10,7 +10,7 @@ import * as actions from '../../context/cart-reducer/cartActions'
 
 
 const Dashboard = () => {
-    const {cart, dispatch,cartFilter} = useCart()
+    const {cart, dispatch, cartFilter} = useCart()
     const onDrop = (item, monitor, status) => {
         dispatch({
             type: actions.DROP,
@@ -18,7 +18,6 @@ const Dashboard = () => {
             id: item.id
         })
     }
-
     const moveItem = (dragIndex, hoverIndex, columnStatus) => {
         const selectedCart = cart.filter(el => el.status === columnStatus)[dragIndex]
         dispatch({
@@ -29,7 +28,22 @@ const Dashboard = () => {
             columnStatus
         })
     }
-    const filteredCarts = cart.filter(el=>el.title.toLowerCase().includes(cartFilter.searchState))
+
+    const filterCartsByTitle = cart.filter(el => {
+        return el.title.toLowerCase().includes(cartFilter.searchState)
+    })
+    // Date search fields value
+    const {startDate, endDate} = cartFilter
+    const start = new Date(startDate)
+    const end = endDate ? new Date(endDate) : new Date(new Date().toLocaleDateString())
+    // Filter carts by date range
+    const filterCartsByDate = filterCartsByTitle.filter(el => {
+        const date = new Date(el.date);
+        return (date >= start && date <= end);
+    });
+    // check filter result
+    const carts = filterCartsByDate.length > 0 ? filterCartsByDate : filterCartsByTitle
+
     return (
         <DndProvider backend={HTML5Backend}>
             <div className={style.dashboardContainer}>
@@ -38,9 +52,9 @@ const Dashboard = () => {
                         return <div key={el.status}>
                             <div className={`${style.board} ${style[el.status]}`}>
                                 <h2>{el.status.toUpperCase()}</h2>
-                                <DropWrapper onDrop={onDrop} status={el.status} >
+                                <DropWrapper onDrop={onDrop} status={el.status}>
                                     {
-                                        filteredCarts.filter(i => i.status === el.status)
+                                        carts.filter(i => i.status === el.status)
                                             .map((item, index) => {
                                                 return <Cart key={item.id} item={item}
                                                              index={index}

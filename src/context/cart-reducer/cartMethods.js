@@ -1,11 +1,11 @@
 const addNewCart = (cart, action) => {
-    const {title, description, status, id} = action
-    return [...cart, {title, description, status, id}]
+    const {title, description, status, id, date} = action
+    return [...cart, {title, description, status, id, date}]
 }
 
 const editCart = (cart, action) => {
-    const {title, description, status, id} = action
-    return cart.map(el => el.id === id ? {...el, title, description, status} : el)
+    const {title, description, status, id,date} = action
+    return cart.map(el => el.id === id ? {...el, title, description, status,date} : el)
 }
 
 const deleteCart = (cart, action) => {

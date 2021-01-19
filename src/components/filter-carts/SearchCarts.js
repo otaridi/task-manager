@@ -1,38 +1,38 @@
-// eslint-disable-next-line no-unused-vars
-import React, {useEffect, useReducer, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useCart} from "../../context/cartContext";
 import style from './searchCarts.module.css'
 import {FILTER} from "../../context/cart-reducer/cartActions";
 
+const emptyDateFields = {
+    startDate: '',
+    endDate: ''
+}
 
 const SearchCarts = () => {
     const {dispatchFilter} = useCart()
     const [checked, setChecked] = useState(false)
     const [searchState, setSearchState] = useState('')
-
-    const [dateFilter, setDateFilter] = useReducer((state, newState) => ({...state, ...newState}),
-        {
-            startDate: '',
-            endDate: ''
-        }
-    );
+    const [dateFilter, setDateFilter] = useState(emptyDateFields)
     const {startDate, endDate} = dateFilter
 
     const dateChange = (e) => {
         const {name, value} = e.target
-        setDateFilter({
-            [name]: value
+        setDateFilter(prevState => {
+            return {
+                ...prevState,
+                [name]: value
+            }
         })
     }
 
     const toggleDateFilter = () => {
         setChecked(!checked)
-        setDateFilter({startDate: '', endDate: ''})
+        setDateFilter(emptyDateFields)
     }
     const clearInputFields = () => {
         setSearchState('')
         setChecked(false)
-        setDateFilter({startDate: '', endDate: ''})
+        setDateFilter(emptyDateFields)
         dispatchFilter({type: FILTER, searchState, startDate, endDate})
     }
 
@@ -44,28 +44,30 @@ const SearchCarts = () => {
         <div className={style.searchContainer}>
             <section className={style.searchField}>
                 <input type="search" placeholder='Search by title' value={searchState}
-                       onChange={(e) => setSearchState(e.target.value)}/>
-            </section>
-            <section className={style.dateSearch}>
-                <input type="checkbox" onChange={toggleDateFilter} value={!checked}
-                       checked={checked}
-                       title='filter by date'
-                       className={style.check}
+                       onChange={(e) => setSearchState(e.target.value)}
+                       title='Filter by title'
                 />
+            </section>
+            <section className={style.dateSearch} style={{display: checked ? 'flex' : 'none'}}>
+                <label className={style.from}>From</label>
                 <input type="date"
                        name='startDate'
                        onChange={dateChange}
-                       disabled={!checked}
                        value={startDate}
                 />
+                <label>To</label>
                 <input type="date"
                        name='endDate'
                        onChange={dateChange}
-                       disabled={!checked}
                        value={endDate}
                 />
             </section>
-            <button onClick={clearInputFields}>Clear filters</button>
+            <button onClick={toggleDateFilter} className={style.dateDropDown}
+                    title='Filter by date'>Date<span
+                className={checked ? `${style.arrow} ${style.active}` : style.arrow}>
+                          <span/><span/></span>
+            </button>
+            <button onClick={clearInputFields} title='Clear filter'>Reset</button>
         </div>
     )
 }
