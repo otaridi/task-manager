@@ -1,0 +1,30 @@
+.searchContainer{
+    height: 40px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 70%;
+    margin:8px auto 8px;
+}
+.searchField input {
+    height: 25px;
+    /*width: 150px;*/
+    padding-left: 5px;
+}
+.dateSearch{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.dateSearch input {
+    /*width: 120px;*/
+}
+.dateSearch .check{
+    width: 20px;
+    margin: 0;
+    height: 15px;
+    cursor: pointer;
+}
+button {
+    cursor: pointer;
+}

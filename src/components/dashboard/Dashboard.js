@@ -10,8 +10,7 @@ import * as actions from '../../context/cart-reducer/cartActions'
 
 
 const Dashboard = () => {
-    const {cart, dispatch} = useCart()
-
+    const {cart, dispatch,cartFilter} = useCart()
     const onDrop = (item, monitor, status) => {
         dispatch({
             type: actions.DROP,
@@ -19,7 +18,7 @@ const Dashboard = () => {
             id: item.id
         })
     }
-    // eslint-disable-next-line no-unused-vars
+
     const moveItem = (dragIndex, hoverIndex, columnStatus) => {
         const selectedCart = cart.filter(el => el.status === columnStatus)[dragIndex]
         dispatch({
@@ -30,19 +29,18 @@ const Dashboard = () => {
             columnStatus
         })
     }
-
-
+    const filteredCarts = cart.filter(el=>el.title.toLowerCase().includes(cartFilter.searchState))
     return (
         <DndProvider backend={HTML5Backend}>
             <div className={style.dashboardContainer}>
                 {
                     statuses.map(el => {
                         return <div key={el.status}>
-                            <h2>{el.status.toUpperCase()}</h2>
                             <div className={`${style.board} ${style[el.status]}`}>
+                                <h2>{el.status.toUpperCase()}</h2>
                                 <DropWrapper onDrop={onDrop} status={el.status} >
                                     {
-                                        cart.filter(i => i.status === el.status)
+                                        filteredCarts.filter(i => i.status === el.status)
                                             .map((item, index) => {
                                                 return <Cart key={item.id} item={item}
                                                              index={index}

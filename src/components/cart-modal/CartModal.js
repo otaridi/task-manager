@@ -60,7 +60,6 @@ const CartModal = ({toggleModal, values}) => {
     return (
         <div className={style.modalContainer}>
             <div className={style.modalCart}>
-                {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
                 <form onSubmit={formSubmit}>
 
                     <section className={style.header}>

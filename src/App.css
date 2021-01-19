@@ -43,7 +43,7 @@ html, body{
 }
 /* carts column */
 .drop-wrapper {
-  height: 81vh;
+  height: 75vh;
   display: flex;
   flex-direction: column;
 }
