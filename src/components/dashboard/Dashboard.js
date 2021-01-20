@@ -30,7 +30,7 @@ const Dashboard = () => {
     }
 
     const filterCartsByTitle = cart.filter(el => {
-        return el.title.toLowerCase().includes(cartFilter.searchState)
+        return el.title.toLowerCase().includes(cartFilter.searchState.toLowerCase())
     })
     // Date search fields value
     const {startDate, endDate} = cartFilter
@@ -39,7 +39,7 @@ const Dashboard = () => {
     // Filter carts by date range
     const filterCartsByDate = filterCartsByTitle.filter(el => {
         const date = new Date(el.date);
-        return (date >= start && date <= end);
+        return (date <= start && date >= end);
     });
     // check filter result
     const carts = filterCartsByDate.length > 0 ? filterCartsByDate : filterCartsByTitle

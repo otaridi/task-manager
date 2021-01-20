@@ -64,7 +64,7 @@ const SearchCarts = () => {
             </section>
             <button onClick={toggleDateFilter} className={style.dateDropDown}
                     title='Filter by date'>Date<span
-                className={checked ? `${style.arrow} ${style.active}` : style.arrow}>
+                className={!checked ? `${style.arrow} ${style.active}` : style.arrow}>
                           <span/><span/></span>
             </button>
             <button onClick={clearInputFields} title='Clear filter'>Reset</button>

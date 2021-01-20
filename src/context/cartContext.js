@@ -4,6 +4,12 @@ import filterReducer from "./carts-filter-reducer/filterReducer";
 
 const CartContext = createContext(null)
 
+const initialFilterState = {
+    searchState: '',
+    startDate: '',
+    endDate: ''
+}
+
 let initialState;
 try {
     initialState = JSON.parse(localStorage.getItem('cart')) ?? []
@@ -14,7 +20,7 @@ try {
 
 export function CartProvider({children}) {
     const [cart, dispatch] = useReducer(cartReducer, initialState)
-    const [cartFilter, dispatchFilter] = useReducer(filterReducer, {})
+    const [cartFilter, dispatchFilter] = useReducer(filterReducer, initialFilterState)
 
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cart))
