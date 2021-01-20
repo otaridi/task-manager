@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {useCart} from "../../context/cartContext";
 import style from './searchCarts.module.css'
+import 'react-datepicker/dist/react-datepicker.css'
 import {FILTER} from "../../context/cart-reducer/cartActions";
 
 const emptyDateFields = {

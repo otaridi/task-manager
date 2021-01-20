@@ -10,20 +10,10 @@
     margin: 0;
     padding: 0 20px;
     display: flex;
-    justify-content:  space-between;
+    justify-content: flex-end;
     align-items: center;
     height: 50px;
 }
-.headerContainer li > button{
+.headerContainer li{
     margin-left: 20px;
-}
-.addBtn{
-    height: 30px;
-    cursor: pointer;
-}
-
-@media only screen and (max-width: 900px) {
-    .headerContainer{
-        width: 92%;
-    }
 }
