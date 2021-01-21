@@ -7,8 +7,9 @@ export function filterCart(cart, searchState, startDate, endDate) {
         return el.title.toLowerCase().includes(searchState.toLowerCase().trimStart())
     })
 
-    const sortedDates = cart.map(el => el.date).sort((a, b) => a - b)
-    const oldestDate = format(new Date(sortedDates[0]), dateFormat)
+    const sortedDates = cart.map(el => el.date).sort()
+    const oldestDate = sortedDates.lenght > 0 ? format(new Date(sortedDates[0]), dateFormat)
+        :format(new Date(),dateFormat)
     const presentDate = format(new Date(), dateFormat)
 
     // check if startDate exist, default value is oldestDate from carts date
@@ -22,5 +23,5 @@ export function filterCart(cart, searchState, startDate, endDate) {
         return (date >= start && date <= end);
     });
     // check filter result
-    return filterCartsByDate.length > 0 ? filterCartsByDate : filterCartsByTitle
+    return filterCartsByDate
 }
