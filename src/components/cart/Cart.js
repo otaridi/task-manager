@@ -3,7 +3,7 @@ import style from "./cart.module.css";
 import Modal from "../modal/Modal";
 import CartModal from "../cart-modal/CartModal";
 import {useModal} from "../../hooks/useModal";
-import ITEM_TYPE from "../drop-wrapper/types";
+import ITEM_TYPE from "../../utilites/dropWrapperTypes";
 import {useDrag, useDrop} from 'react-dnd'
 
 

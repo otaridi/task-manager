@@ -1,4 +1,4 @@
-import {FILTER} from "../cart-reducer/cartActions";
+import {FILTER} from "./filterActions";
 
 export default function filterReducer(state, action) {
     switch (action.type) {

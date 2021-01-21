@@ -2,11 +2,12 @@ import React from 'react'
 import {DndProvider} from 'react-dnd'
 import {HTML5Backend} from 'react-dnd-html5-backend'
 import style from './dashboard.module.css'
-import {statuses} from "./dashboardStatus";
+import {statuses} from "../../utilites/dashboardStatuses";
 import Cart from "../cart/Cart";
 import DropWrapper from "../drop-wrapper/DropWrapper";
 import {useCart} from "../../context/cartContext";
 import * as actions from '../../context/cart-reducer/cartActions'
+import {filterCart} from "../../utilites/cartsFilterHelper";
 
 
 const Dashboard = () => {
@@ -29,20 +30,8 @@ const Dashboard = () => {
         })
     }
 
-    const filterCartsByTitle = cart.filter(el => {
-        return el.title.toLowerCase().includes(cartFilter.searchState.toLowerCase())
-    })
-    // Date search fields value
-    const {startDate, endDate} = cartFilter
-    const start = new Date(startDate)
-    const end = endDate ? new Date(endDate) : new Date(new Date().toLocaleDateString())
-    // Filter carts by date range
-    const filterCartsByDate = filterCartsByTitle.filter(el => {
-        const date = new Date(el.date);
-        return (date <= start && date >= end);
-    });
-    // check filter result
-    const carts = filterCartsByDate.length > 0 ? filterCartsByDate : filterCartsByTitle
+    const {searchState, startDate, endDate} = cartFilter
+    const carts = filterCart(cart, searchState, startDate, endDate)
 
     return (
         <DndProvider backend={HTML5Backend}>

@@ -1,7 +1,7 @@
 import React from 'react'
 import {useDrop} from 'react-dnd'
-import ITEM_TYPE from "./types";
-import {statuses} from "../dashboard/dashboardStatus";
+import ITEM_TYPE from "../../utilites/dropWrapperTypes";
+import {statuses} from "../../utilites/dashboardStatuses";
 
 const DropWrapper = ({onDrop, children, status})=>{
     const [{isOver,canDrop}, drop] = useDrop({

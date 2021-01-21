@@ -2,7 +2,8 @@ import React, {useState} from "react";
 import style from './cartModal.module.css'
 import {useCart} from "../../context/cartContext";
 import * as actions from '../../context/cart-reducer/cartActions'
-import {statuses} from "../dashboard/dashboardStatus";
+import {statuses} from "../../utilites/dashboardStatuses";
+import {format} from 'date-fns'
 
 
 const emptyForm = {
@@ -39,18 +40,18 @@ const CartModal = ({toggleModal, values}) => {
             setWarning(true)
             e.preventDefault()
         }
-        // add new task
+        // Add new task
         if (title && description && !values) {
-            const date = new Date().toLocaleDateString()
+            const date = format(new Date(),'MM/dd/yyyy')
             // finds max id from cart
             const ids = cart.map(el => el.id)
             const id = ids.length === 0 ? 1 : Math.max(...ids) + 1
             dispatch({type: actions.ADD, title, description, status, id, date})
             toggleModal()
         }
-        // edit task
+        // Edit task
         if (values && title.length > 0 && description.length > 0) {
-            const date = new Date().toLocaleDateString()
+            const date = format(new Date(),'MM/dd/yyyy')
             dispatch({type: actions.EDIT, title, description, status, id: values.id,date})
             toggleModal()
         }

@@ -17,3 +17,10 @@
 .headerContainer li{
     margin-left: 20px;
 }
+
+
+@media only screen and (max-width: 900px) {
+    .headerContainer{
+        width: 92%;
+    }
+}
