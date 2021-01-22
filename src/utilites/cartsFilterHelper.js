@@ -8,7 +8,7 @@ export function filterCart(cart, searchState, startDate, endDate) {
     })
 
     const sortedDates = cart.map(el => el.date).sort()
-    const oldestDate = sortedDates.lenght > 0 ? format(new Date(sortedDates[0]), dateFormat)
+    const oldestDate = sortedDates.length > 0 ? format(new Date(sortedDates[0]), dateFormat)
         :format(new Date(),dateFormat)
     const presentDate = format(new Date(), dateFormat)
 
