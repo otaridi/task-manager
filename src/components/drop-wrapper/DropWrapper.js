@@ -1,4 +1,5 @@
 import React from 'react'
+import style from './dropWrapper.module.css'
 import {useDrop} from 'react-dnd'
 import ITEM_TYPE from "../../utilites/dropWrapperTypes";
 import {statuses} from "../../utilites/dashboardStatuses";
@@ -22,7 +23,7 @@ const DropWrapper = ({onDrop, children, status})=>{
     })
 
     return (
-        <div ref={drop} className='drop-wrapper'>
+        <div ref={drop} className={style.dropWrapper}>
             { React.Children.map(children, (child) => React.cloneElement(child, {isOver,canDrop,status}))}
         </div>
     )

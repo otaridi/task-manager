@@ -1,0 +1,16 @@
+.pageNotFound{
+    height: 100vh;
+    background-color: #e9e9f1;
+}
+.pageNotFound section{
+    text-align: center;
+    padding-top: 50px;
+}
+.pageNotFound section h1{
+    margin-top: 0;
+}
+.pageNotFound section a{
+    /*text-decoration: none;*/
+    color: black;
+    font-weight: 800;
+}
