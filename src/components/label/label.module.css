@@ -17,8 +17,50 @@
 .headerContainer li{
     margin-left: 20px;
 }
+/* LABEL MODAL  */
+.labelModalContainer{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.labelModalContainer h2{
+    text-align: end;
+    margin: 0 20px 20px;
+}
+.colorPicker{
+    position: absolute;
+    top:95px;
+    left: 22px;
+}
+.colorInput{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+.colorInput input{
+    margin-right: 20px;
+    width: 72%;
+    font-size: 1.3rem;
+    padding-left: 10px;
+}
+.colorInput button{
+    width: 40px;
+    height: 40px;
+    border: 1px solid gray;
+    outline: none;
+    margin-left: 20px;
+    border-radius: 3px;
+}
+.modalBtns{
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 20px;
+}
+.modalBtns button{
+    margin-left: 20px;
+}
 
-
+/* MEDIA */
 @media only screen and (max-width: 900px) {
     .headerContainer{
         width: 92%;
