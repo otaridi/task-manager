@@ -22,7 +22,7 @@ const PageNotFound = () => {
                 <h1>Page not found 😕</h1>
                 <p>Wait <strong>{timer}</strong> sec or
                     <NavLink to='/'>
-                        <strong>go</strong>
+                        <strong> go </strong>
                     </NavLink>
                     to home page
                 </p>

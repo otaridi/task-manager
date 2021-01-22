@@ -16,17 +16,16 @@ const Dashboard = () => {
         dispatch({
             type: actions.DROP,
             status,
-            id: item.id
+            item
         })
     }
-    const moveItem = (dragIndex, hoverIndex, columnStatus) => {
-        const selectedCart = cart.filter(el => el.status === columnStatus)[dragIndex]
+    const moveItem = (dragIndex, hoverIndex, columnStatus,item) => {
         dispatch({
             type: actions.MOVE,
-            selectedCart,
+            item,
             dragIndex,
             hoverIndex,
-            columnStatus
+            columnStatus,
         })
     }
 

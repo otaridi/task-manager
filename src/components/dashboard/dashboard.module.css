@@ -24,8 +24,9 @@
     border: 1px solid #94e396;
 }
 .dashboardContainer  h2{
-    margin: 5px;
+    margin: 5px 10px;
     text-align: center;
+    border-bottom: 1px solid gray;
 }
 /* SCROLLBAR */
 ::-webkit-scrollbar {

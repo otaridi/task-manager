@@ -34,7 +34,7 @@ const Cart = ({item, index, moveItem, isOver,status}) => {
                 return;
             }
                                  // column status which hovered by selected cart
-            moveItem(dragIndex, hoverIndex,status)
+            moveItem(dragIndex, hoverIndex,status,item)
             item.index = hoverIndex
         },
     })
