@@ -38,9 +38,9 @@ const Dashboard = () => {
                 {
                     statuses.map(el => {
                         return <div key={el.status}>
-                            <div className={`${style.board} ${style[el.status]}`}>
+                            <div className={style.board}>
                                 <h2>{el.status.toUpperCase()}</h2>
-                                <DropWrapper onDrop={onDrop} status={el.status}>
+                                <DropWrapper onDrop={onDrop} status={el.status} color={el.color}>
                                     {
                                         carts.filter(i => i.status === el.status)
                                             .map((item, index) => {

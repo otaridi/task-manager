@@ -1,5 +1,5 @@
 export const statuses = [
-    {status: 'backlog'},
-    {status: 'progress'},
-    {status: 'done'},
+    {status: 'backlog', color: '#f8e3e3'},
+    {status: 'progress', color: '#d3f7fc'},
+    {status: 'done', color: '#d9fad6'},
 ]

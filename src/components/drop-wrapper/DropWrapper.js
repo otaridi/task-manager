@@ -4,7 +4,7 @@ import {useDrop} from 'react-dnd'
 import ITEM_TYPE from "../../utilites/dropWrapperTypes";
 import {statuses} from "../../utilites/dashboardStatuses";
 
-const DropWrapper = ({onDrop, children, status})=>{
+const DropWrapper = ({onDrop, children, status,color})=>{
     const [{isOver,canDrop}, drop] = useDrop({
         accept:ITEM_TYPE,
         // eslint-disable-next-line no-unused-vars
@@ -23,7 +23,7 @@ const DropWrapper = ({onDrop, children, status})=>{
     })
 
     return (
-        <div ref={drop} className={style.dropWrapper}>
+        <div ref={drop} className={style.dropWrapper} style={{backgroundColor:color}}>
             { React.Children.map(children, (child) => React.cloneElement(child, {isOver,canDrop,status}))}
         </div>
     )

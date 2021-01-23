@@ -6,51 +6,14 @@
     grid-gap: 6%;
 }
 .board{
-    height: 84vh;
-    overflow-y: auto;
     margin-top: 40px;
-}
-.backlog{
-    background-color: #fff5f5;
-    border: 1px solid #dda2a2;
-}
-.progress{
-    background-color: #e2fcff;
-    border: 1px solid #98c3e7;
-
-}
-.done{
-    background-color: #ebffe9;
-    border: 1px solid #94e396;
 }
 .dashboardContainer  h2{
     margin: 5px 10px;
     text-align: center;
     border-bottom: 1px solid gray;
 }
-/* SCROLLBAR */
-::-webkit-scrollbar {
-    width: 6px;
-}
 
-/* Track */
-::-webkit-scrollbar-track {
-    background: #f1f1f1;
-}
-::-webkit-scrollbar-track:hover{
-    width: 20px;
-}
-/* Handle */
-::-webkit-scrollbar-thumb {
-    background: #d6d2d2;
-    border-radius: 5px;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-    background: #999898;
-    width: 15px;
-}
 /*=============================*/
 @media only screen and (max-width: 900px) {
    .dashboardContainer{
