@@ -10,7 +10,8 @@ const ColorPicker = ({defaultColor, status, dispatchDashBoard}) => {
         setColor(color.hex)
         setShowColorPicker(!showColorPicker)
     }
-    const clickHandler = () => {
+    const clickHandler = (e) => {
+        e.preventDefault()
         setShowColorPicker(!showColorPicker)
     }
     useEffect(() => {
