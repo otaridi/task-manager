@@ -7,7 +7,7 @@ import {useModal} from "../../hooks/useModal";
 import SearchCarts from "../filter-carts/SearchCarts";
 
 const Header = () => {
-    const {showModal, toggleModal} = useModal()
+    const [showModal, toggleModal] = useModal()
     return (
         <div className={style.headerContainer}>
             <ul>

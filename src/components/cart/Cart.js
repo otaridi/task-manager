@@ -9,7 +9,7 @@ import {useDrag, useDrop} from 'react-dnd'
 
 // eslint-disable-next-line no-unused-vars
 const Cart = ({item, index, moveItem, isOver,status}) => {
-    const {showModal, toggleModal} = useModal()
+    const [showModal, toggleModal] = useModal()
     //=================================
     const ref = useRef(null)
     const [, drop] = useDrop({

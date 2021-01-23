@@ -6,7 +6,7 @@ import Modal from "../modal/Modal";
 import LabelModal from "./LabelModal";
 
 const Label = () =>{
-    const {showModal, toggleModal} = useModal()
+    const [showModal, toggleModal] = useModal()
     return (
         <div className={style.headerContainer}>
             <ul>
