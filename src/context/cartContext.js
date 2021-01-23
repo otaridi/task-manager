@@ -1,32 +1,21 @@
 import React, {createContext, useReducer, useContext, useEffect} from 'react'
-import cartReducer from "./cart-reducer/cartReducer";
-import filterReducer from "./carts-filter-reducer/filterReducer";
+import cartReducer from "./reducers/cart-reducer/cartReducer";
+import filterReducer from "./reducers/carts-filter-reducer/filterReducer";
+import dashBoardReducer from './reducers/dashboard-reducer/dashBoardReducer'
+import {filterState, dashboardState, cartsState} from "./reducers/initialStates";
 
 const CartContext = createContext(null)
 
-const initialFilterState = {
-    searchState: '',
-    startDate: '',
-    endDate: ''
-}
-
-let initialState;
-try {
-    initialState = JSON.parse(localStorage.getItem('cart')) ?? []
-} catch {
-    console.error('The cart could not be parsed into JSON')
-    initialState = []
-}
-
 export function CartProvider({children}) {
-    const [cart, dispatch] = useReducer(cartReducer, initialState)
-    const [cartFilter, dispatchFilter] = useReducer(filterReducer, initialFilterState)
+    const [cart, dispatch] = useReducer(cartReducer, cartsState)
+    const [cartFilter, dispatchFilter] = useReducer(filterReducer, filterState)
+    const [dashBoard, dispatchDashBoard] = useReducer(dashBoardReducer, dashboardState)
 
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cart))
     }, [cart])
 
-    const value = {cart, dispatch, cartFilter, dispatchFilter}
+    const value = {cart, dispatch, cartFilter, dispatchFilter, dashBoard, dispatchDashBoard}
     return <CartContext.Provider value={value}>{children}</CartContext.Provider>
 }
 

@@ -22,7 +22,7 @@ const Label = () =>{
 
             {showModal ? (
                 <Modal>
-                    <LabelModal toggleModal={toggleModal}/>
+                    <LabelModal toggleModal={toggleModal} defaultColor='#BEDADC'/>
                 </Modal>
             ) : null}
         </div>

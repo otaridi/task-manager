@@ -21,16 +21,10 @@
 .labelModalContainer{
     display: flex;
     flex-direction: column;
-    position: relative;
 }
 .labelModalContainer h2{
     text-align: end;
     margin: 0 20px 20px;
-}
-.colorPicker{
-    position: absolute;
-    top:95px;
-    left: 22px;
 }
 .colorInput{
     display: flex;

@@ -1,8 +1,7 @@
 import React, {useState} from "react";
 import style from './cartModal.module.css'
 import {useCart} from "../../context/cartContext";
-import * as actions from '../../context/cart-reducer/cartActions'
-import {statuses} from "../../utilites/dashboardStatuses";
+import * as actions from '../../context/reducers/cart-reducer/cartActions'
 import {format} from 'date-fns'
 
 
@@ -15,7 +14,7 @@ const emptyForm = {
 const CartModal = ({toggleModal, values}) => {
 
     const [formFields, setFormFields] = useState(values ? values : emptyForm)
-    const {cart, dispatch} = useCart()
+    const {cart, dispatch, dashBoard} = useCart()
     const [warning, setWarning] = useState(false)
 
     function handleChange(e) {
@@ -42,7 +41,7 @@ const CartModal = ({toggleModal, values}) => {
         }
         // Add new task
         if (title && description && !values) {
-            const date = format(new Date(),'MM/dd/yyyy')
+            const date = format(new Date(), 'MM/dd/yyyy')
             // finds max id from cart
             const ids = cart.map(el => el.id)
             const id = ids.length === 0 ? 1 : Math.max(...ids) + 1
@@ -51,8 +50,8 @@ const CartModal = ({toggleModal, values}) => {
         }
         // Edit task
         if (values && title.length > 0 && description.length > 0) {
-            const date = format(new Date(),'MM/dd/yyyy')
-            dispatch({type: actions.EDIT, title, description, status, id: values.id,date})
+            const date = format(new Date(), 'MM/dd/yyyy')
+            dispatch({type: actions.EDIT, title, description, status, id: values.id, date})
             toggleModal()
         }
     }
@@ -83,15 +82,16 @@ const CartModal = ({toggleModal, values}) => {
                                   className={warning && formFields.description.length === 0 ? style.warning : ''}
                         />
                     </section>
-                     <section className={style.createDate}>
-                         {values? <h5>Created: {values.date}</h5>:null}
-                     </section>
+                    <section className={style.createDate}>
+                        {values ? <h5>Created: {values.date}</h5> : null}
+                    </section>
                     <section className={style.cartFooter}>
 
                         <select id='status' className={style.select} value={formFields.status}
                                 onBlur={blurHandle} onChange={handleChange}>
-                            {statuses.map(el =>
-                                <option key={el.status} value={el.status}>{el.status}</option>
+                            {dashBoard.map(el =>
+                                <option key={el.status} style={{background: el.color}}
+                                        value={el.status}>{el.status}</option>
                             )}
                         </select>
 

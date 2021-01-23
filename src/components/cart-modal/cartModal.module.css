@@ -79,19 +79,6 @@
     font-size: 1rem;
     width: 100px;
 }
-.select option[value="backlog"] {
-    background: #f6b6b6;
-    /*color: #a22a2a;*/
-}
-.select option[value="progress"] {
-    background: #c2f1f6;
-    /*color: #0c7bd7;*/
-}
-.select option[value="done"] {
-    background: #b1f5a9;
-    /*color: #06a70a;*/
-}
-
 .warning{
     border: 2px solid #ec6d6d;
     border-radius: 2px;

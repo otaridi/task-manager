@@ -14,7 +14,6 @@ export default function cartReducer(cart, action) {
         case actions.MOVE:
             return moveCart(cart,action)
         default:
-            // if action type dont match throw this error
-            throw new Error('Unhandled action ' + action.type)
+            return cart
     }
 }

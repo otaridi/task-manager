@@ -1,23 +1,41 @@
-.dashboardContainer{
+.dashboardContainer {
     width: 80%;
     margin: auto;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 6%;
 }
-.board{
-    margin-top: 40px;
+
+.board {
+    margin-top: 32px;
 }
-.dashboardContainer  h2{
-    margin: 5px 10px;
-    text-align: center;
+
+.dashBoardHeader {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
     border-bottom: 1px solid gray;
+    margin: 5px 10px;
+}
+
+.dashBoardHeader h2 {
+    margin: 2px 0;
+    width: 90%;
+    text-align: center;
+}
+
+.dashBoardHeader button {
+    width: 15px;
+    height: 15px;
+    border: 1px solid gray;
+    outline: none;
+    border-radius: 3px;
 }
 
 /*=============================*/
 @media only screen and (max-width: 900px) {
-   .dashboardContainer{
-       width: 92%;
-       grid-gap: 4%;
-   }
+    .dashboardContainer {
+        width: 92%;
+        grid-gap: 4%;
+    }
 }
