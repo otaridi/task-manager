@@ -1,6 +1,6 @@
 /* carts column */
 .dropWrapper {
-    height: 79vh;
+    height: 75vh;
     display: flex;
     flex-direction: column;
     border: 1px solid #948181;

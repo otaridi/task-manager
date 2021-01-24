@@ -1,15 +1,25 @@
+.newBoard{
+    position: relative;
+    right: 15%;
+}
+.boardContainer{
+  position: relative;
+}
 .addBoard {
     position: absolute;
-    right: 10%;
+    right: 5%;
     width: 90px;
     height: 30px;
+    z-index: 2;
+    margin: 5px;
 }
-
 .newBoardForm {
     position: absolute;
     display: flex;
-    top: 58px;
-    right: calc(10% + 110px)
+    top: 0;
+    right: calc(5% + 110px);
+    z-index: 2;
+    margin: 5px;
 }
 
 .newBoardForm input {
@@ -36,7 +46,9 @@
     .addBoard {
         right: 4%;
     }
-
+    .newBoard{
+        right: 0;
+    }
     .newBoardForm {
         right: calc(4% + 110px)
     }

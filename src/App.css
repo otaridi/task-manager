@@ -40,4 +40,5 @@ html, body{
   padding: 15px;
   border-radius: 5px;
   text-align: center;
+  z-index: 10;
 }

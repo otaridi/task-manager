@@ -6,8 +6,8 @@ const ColorPicker = ({defaultColor, status, dispatchDashBoard}) => {
     const [color, setColor] = useState(defaultColor)
     const [showColorPicker, setShowColorPicker] = useState(false)
 
-    const colorPickerChange = (color) => {
-        setColor(color.hex)
+    const colorPickerChange = (colorPicker) => {
+        setColor(colorPicker.hex)
         setShowColorPicker(!showColorPicker)
     }
     const clickHandler = (e) => {
@@ -20,14 +20,14 @@ const ColorPicker = ({defaultColor, status, dispatchDashBoard}) => {
         }
     }, [color])
     return (
-        <div>
+        <div style={{position:'relative'}}>
             <button style={{
                 backgroundColor: color,
             }}
                     title='Pick a color'
                     onClick={clickHandler}/>
             {showColorPicker &&
-            <div style={{position: 'absolute'}}>
+            <div style={{position: 'absolute',right:'-20px'}}>
                 <GithubPicker color={color} onChange={colorPickerChange} triangle={'hide'}/>
             </div>}
         </div>

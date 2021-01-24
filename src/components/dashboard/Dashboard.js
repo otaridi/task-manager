@@ -6,6 +6,7 @@ import Cart from "../cart/Cart";
 import DropWrapper from "../drop-wrapper/DropWrapper";
 import {useCart} from "../../context/cartContext";
 import * as actions from '../../context/reducers/cart-reducer/cartActions'
+import {deleteBoard} from "../../context/reducers/dashboard-reducer/dashBoardActions";
 import {filterCart} from "../../utilites/cartsFilterHelper";
 import ColorPicker from "../ColorPicker";
 import NewBoard from "../new-board/NewBoard";
@@ -13,7 +14,6 @@ import NewBoard from "../new-board/NewBoard";
 
 const Dashboard = () => {
     const {cart, dispatch, cartFilter, dashBoard, dispatchDashBoard} = useCart()
-
     const onDrop = (item, monitor, status) => {
         dispatch({
             type: actions.DROP,
@@ -33,12 +33,16 @@ const Dashboard = () => {
     const {searchState, startDate, endDate} = cartFilter
     const carts = filterCart(cart, searchState, startDate, endDate)
 
+    const cartStatuses = cart.map(el => el.status)
 
     return (
         <div>
-            <NewBoard dispatchDashBoard={dispatchDashBoard} dashBoard={dashBoard}/>
+            {dashBoard.length < 6 ?
+                <NewBoard dispatchDashBoard={dispatchDashBoard} dashBoard={dashBoard}/> : null
+            }
             <DndProvider backend={HTML5Backend}>
-                <div className={style.dashboardContainer}>
+                <div
+                    className={dashBoard.length > 3 ? style.dashboardContainer : style.dashBoardGrid}>
                     {
                         dashBoard.map(el => {
                             return <div className={style.board} key={el.status}>
@@ -61,6 +65,15 @@ const Dashboard = () => {
                                             })
                                     }
                                 </DropWrapper>
+                                {
+                                    cartStatuses.includes(el.status) || dashBoard.length < 3 ? null :
+                                        <button onClick={() => dispatchDashBoard({
+                                            type: deleteBoard,
+                                            status: el.status
+                                        })}
+                                                className={style.deleteBtn}>Delete
+                                        </button>
+                                }
                             </div>
                         })
                     }

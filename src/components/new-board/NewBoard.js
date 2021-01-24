@@ -35,8 +35,9 @@ const NewBoard = ({dashBoard, dispatchDashBoard}) => {
         })
     }
 
+
     return (
-        <div>
+        <div className={dashBoard.length < 4 ? style.newBoard : style.boardContainer}>
             <button className={style.addBoard} onClick={() => setShowInput(!showInput)}>New
                 board
             </button>
@@ -44,8 +45,8 @@ const NewBoard = ({dashBoard, dispatchDashBoard}) => {
                 <form className={style.newBoardForm} onSubmit={addNewColumn}
                       style={showInput ? {display: 'flex'} : {display: 'none'}}>
                     <input type="text" placeholder='status' name='status' onChange={inputChange}
-                           value={status}/>
-                    <ColorPicker defaultColor={color} name='color'/>
+                           value={status} autoComplete='off'/>
+                    <ColorPicker defaultColor={color} status={status} name='color' style={{zIndex: '10'}}/>
                     <button className={style.addBtn}>Add</button>
                 </form>
             </section>
