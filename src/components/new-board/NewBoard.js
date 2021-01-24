@@ -11,17 +11,19 @@ const defaultState = {
 const NewBoard = ({dashBoard, dispatchDashBoard}) => {
     const [showInput, setShowInput] = useState(false)
     const [formState, setFormState] = useState(defaultState)
+    const [warning, setWarning] = useState(false)
 
     const {status, color} = formState
+    const statuses = dashBoard.map(el => el.status)
+
     const addNewColumn = (e) => {
         e.preventDefault()
-        const statuses = dashBoard.map(el => el.status)
-        if (!statuses.includes(status) && status) {
+        if (!statuses.includes(status.toLowerCase().trim()) && status.trim()) {
             dispatchDashBoard({type: addBoard, status, color})
             setShowInput(!showInput)
             setFormState(defaultState)
         } else {
-            alert('cant add')
+            setWarning(true)
         }
     }
 
@@ -33,20 +35,29 @@ const NewBoard = ({dashBoard, dispatchDashBoard}) => {
                 [name]: value
             }
         })
+        statuses.includes(value.toLowerCase().trimStart()) || !value ?
+            setWarning(true) : setWarning(false)
     }
 
+    const showNewBoardForm = () => {
+        setFormState(defaultState)
+        setShowInput(!showInput)
+        setWarning(false)
+    }
 
     return (
         <div className={dashBoard.length < 4 ? style.newBoard : style.boardContainer}>
-            <button className={style.addBoard} onClick={() => setShowInput(!showInput)}>New
+            <button className={style.addBoard} onClick={showNewBoardForm}>New
                 board
             </button>
             <section>
                 <form className={style.newBoardForm} onSubmit={addNewColumn}
                       style={showInput ? {display: 'flex'} : {display: 'none'}}>
                     <input type="text" placeholder='status' name='status' onChange={inputChange}
-                           value={status} autoComplete='off'/>
-                    <ColorPicker defaultColor={color} status={status} name='color' style={{zIndex: '10'}}/>
+                           value={status} autoComplete='off'
+                           className={warning ? style.input : ''}/>
+                    <ColorPicker defaultColor={color} status={status} name='color'
+                                 style={{zIndex: '10'}}/>
                     <button className={style.addBtn}>Add</button>
                 </form>
             </section>
