@@ -4,6 +4,7 @@
     border-left: 1px solid gray;
     border-right: 1px solid gray;
     /*box-shadow: -1px -1px 9px 0px rgba(0,0,0,0.75) inset;*/
+    border-radius: 3px;
     padding: 5px 10px 5px;
     margin: auto;
     display: grid;
@@ -19,6 +20,7 @@
     border-top: 1px solid gray;
     border-left: 1px solid gray;
     border-right: 1px solid gray;
+    border-radius: 3px;
     padding: 5px 10px 5px;
     margin: auto;
     display: grid;
@@ -42,20 +44,6 @@
     margin: 2px 0;
     width: 90%;
     text-align: center;
-}
-
-.dashBoardHeader button {
-    width: 15px;
-    height: 15px;
-    border: 1px solid gray;
-    outline: none;
-    border-radius: 3px;
-}
-
-.deleteBtn {
-    position: absolute;
-    bottom: 5px;
-    /*right: 0;*/
 }
 
 /*=============================*/

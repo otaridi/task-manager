@@ -1,4 +1,4 @@
-import {changeColor, addBoard, deleteBoard} from "./dashBoardActions";
+import {changeColor, addBoard, deleteBoard, edit} from "./dashBoardActions";
 
 export default function dashBoardReducer(state, action) {
     switch (action.type) {
@@ -14,7 +14,10 @@ export default function dashBoardReducer(state, action) {
             const {status} = action
             return state.filter(el => el.status !== status)
         }
-
+        case edit: {
+            const {status, title} = action
+            return state.map(el => el.status === status ? {...el, status: title} : el)
+        }
         default:
             return state
     }

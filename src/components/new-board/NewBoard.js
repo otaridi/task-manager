@@ -58,7 +58,7 @@ const NewBoard = ({dashBoard, dispatchDashBoard}) => {
                            className={warning ? style.input : ''}/>
                     <ColorPicker defaultColor={color} status={status} name='color'
                                  style={{zIndex: '10'}}/>
-                    <button className={style.addBtn}>Add</button>
+                    <button className={style.addBtn} disabled={warning}>Add</button>
                 </form>
             </section>
         </div>

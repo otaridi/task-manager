@@ -27,7 +27,7 @@ const ColorPicker = ({defaultColor, status, dispatchDashBoard}) => {
                     title='Pick a color'
                     onClick={clickHandler}/>
             {showColorPicker &&
-            <div style={{position: 'absolute',right:'-20px'}}>
+            <div style={{position: 'absolute',right:'-106px'}}>
                 <GithubPicker color={color} onChange={colorPickerChange} triangle={'hide'}/>
             </div>}
         </div>

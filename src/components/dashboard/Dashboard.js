@@ -6,10 +6,9 @@ import Cart from "../cart/Cart";
 import DropWrapper from "../drop-wrapper/DropWrapper";
 import {useCart} from "../../context/cartContext";
 import * as actions from '../../context/reducers/cart-reducer/cartActions'
-import {deleteBoard} from "../../context/reducers/dashboard-reducer/dashBoardActions";
 import {filterCart} from "../../utilites/cartsFilterHelper";
-import ColorPicker from "../ColorPicker";
 import NewBoard from "../new-board/NewBoard";
+import BoardMenu from "../board-menu/BoardMenu";
 
 
 const Dashboard = () => {
@@ -48,9 +47,8 @@ const Dashboard = () => {
                             return <div className={style.board} key={el.status}>
                                 <section className={style.dashBoardHeader}>
                                     <h2>{el.status.toUpperCase()}</h2>
-                                    <ColorPicker defaultColor={el.color} status={el.status}
-                                                 dispatchDashBoard={dispatchDashBoard}
-                                    />
+                                    <BoardMenu board={el} dispatchDashBoard={dispatchDashBoard}
+                                               cartStatuses={cartStatuses} dashBoard={dashBoard}/>
                                 </section>
                                 <DropWrapper dashBoard={dashBoard} onDrop={onDrop}
                                              status={el.status}
@@ -65,15 +63,6 @@ const Dashboard = () => {
                                             })
                                     }
                                 </DropWrapper>
-                                {
-                                    cartStatuses.includes(el.status) || dashBoard.length < 3 ? null :
-                                        <button onClick={() => dispatchDashBoard({
-                                            type: deleteBoard,
-                                            status: el.status
-                                        })}
-                                                className={style.deleteBtn}>Delete
-                                        </button>
-                                }
                             </div>
                         })
                     }

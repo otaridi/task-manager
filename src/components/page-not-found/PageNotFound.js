@@ -14,7 +14,7 @@ const PageNotFound = () => {
             history.push('/')
         }
         return () => clearTimeout(time)
-    }, [timer])
+    }, [timer,history])
 
     return (
         <div className={style.pageNotFound}>

@@ -13,6 +13,7 @@ export function CartProvider({children}) {
 
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cart))
+        // localStorage.setItem('dashboard', JSON.stringify(dashBoard))
     }, [cart])
 
     const value = {cart, dispatch, cartFilter, dispatchFilter, dashBoard, dispatchDashBoard}
