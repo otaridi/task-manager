@@ -1,11 +1,11 @@
-.headerContainer{
-    width: 80%;
+.labelHeader{
+    width: 90%;
     margin: 4px auto;
     height: 50px;
     background-color: #b9bfd0;
     border: 1px solid #8686ea;
 }
-.headerContainer ul{
+.labelHeader ul{
     list-style: none;
     margin: 0;
     padding: 0 20px;
@@ -14,7 +14,7 @@
     align-items: center;
     height: 50px;
 }
-.headerContainer li{
+.labelHeader li{
     margin-left: 20px;
 }
 /* LABEL MODAL  */
@@ -56,7 +56,7 @@
 
 /* MEDIA */
 @media only screen and (max-width: 900px) {
-    .headerContainer{
+    .labelHeader{
         width: 92%;
     }
 }

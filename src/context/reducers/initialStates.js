@@ -9,6 +9,8 @@ const dashboardState = [
     {status: 'done', color: '#d9fad6'},
 ]
 
+const labelState = []
+
 let cartsState;
 // let dashboardState;
 try {
@@ -27,5 +29,6 @@ try {
 export {
     filterState,
     dashboardState,
-    cartsState
+    cartsState,
+    labelState
 }

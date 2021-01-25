@@ -1,8 +1,7 @@
 .dashboardContainer {
     width: 90%;
-    border-top: 1px solid gray;
-    border-left: 1px solid gray;
-    border-right: 1px solid gray;
+    border: 1px solid gray;
+    border-bottom: none;
     /*box-shadow: -1px -1px 9px 0px rgba(0,0,0,0.75) inset;*/
     border-radius: 3px;
     padding: 5px 10px 5px;
@@ -17,9 +16,8 @@
 }
 .dashBoardGrid{
     width: 60%;
-    border-top: 1px solid gray;
-    border-left: 1px solid gray;
-    border-right: 1px solid gray;
+    border: 1px solid gray;
+    border-bottom: none;
     border-radius: 3px;
     padding: 5px 10px 5px;
     margin: auto;
