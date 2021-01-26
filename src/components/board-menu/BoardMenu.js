@@ -1,9 +1,15 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import style from './boardMenu.module.css'
 import ColorPicker from "../ColorPicker";
-import {deleteBoard, edit} from "../../context/reducers/dashboard-reducer/dashBoardActions";
+import {
+    deleteBoard,
+    edit,
+    changeColor
+} from "../../context/reducers/dashboard-reducer/dashBoardActions";
+import useColorPicker from "../../hooks/useColorPicker";
 
 const BoardMenu = ({board, dispatchDashBoard, cartStatuses, dashBoard}) => {
+    const [color, showColorPicker, colorPickerChange, clickHandler] = useColorPicker(board.color)
     const [showMenu, setShowMenu] = useState(false)
     const [title, setTitle] = useState('')
     const [warning, setWarning] = useState(false)
@@ -30,6 +36,10 @@ const BoardMenu = ({board, dispatchDashBoard, cartStatuses, dashBoard}) => {
         }
     }
 
+    useEffect(() => {
+        dispatchDashBoard({type: changeColor, color, status: board.status})
+    }, [color])
+
     return (
         <div style={style.menuContainer}>
             <div className={showMenu ? `${style.hamburger} ${style.animate}` : style.hamburger}
@@ -42,8 +52,11 @@ const BoardMenu = ({board, dispatchDashBoard, cartStatuses, dashBoard}) => {
                 <span/>
             </div>
             <ul className={style.menu} style={showMenu ? {display: 'block',} : {display: 'none'}}>
-                <li><ColorPicker status={board.status} defaultColor={board.color}
-                                 dispatchDashBoard={dispatchDashBoard}/><span>Board color</span>
+                <li>
+                    <ColorPicker color={color} colorPickerChange={colorPickerChange}
+                                 clickHandler={clickHandler}
+                                 showColorPicker={showColorPicker}/>
+                    <span>Board color</span>
                 </li>
                 {cartStatuses.includes(board.status) ? null :
                     <li>

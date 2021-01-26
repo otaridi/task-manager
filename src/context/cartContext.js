@@ -15,9 +15,8 @@ export function CartProvider({children}) {
 
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cart))
-        console.log(label)
         // localStorage.setItem('dashboard', JSON.stringify(dashBoard))
-    }, [cart,label])
+    }, [cart])
 
     const value = {
         cart,

@@ -2,18 +2,14 @@ import React, {useState} from "react";
 import style from "./newBoard.module.css";
 import ColorPicker from "../ColorPicker";
 import {addBoard} from "../../context/reducers/dashboard-reducer/dashBoardActions";
-
-const defaultState = {
-    status: '',
-    color: '#C1C1E5'
-}
+import useColorPicker from "../../hooks/useColorPicker";
 
 const NewBoard = ({dashBoard, dispatchDashBoard}) => {
+    const [color, showColorPicker, colorPickerChange, clickHandler] = useColorPicker('#D4C4FB')
     const [showInput, setShowInput] = useState(false)
-    const [formState, setFormState] = useState(defaultState)
+    const [status, setStatus] = useState('')
     const [warning, setWarning] = useState(false)
 
-    const {status, color} = formState
     const statuses = dashBoard.map(el => el.status)
 
     const addNewColumn = (e) => {
@@ -21,26 +17,21 @@ const NewBoard = ({dashBoard, dispatchDashBoard}) => {
         if (!statuses.includes(status.toLowerCase().trim()) && status.trim()) {
             dispatchDashBoard({type: addBoard, status, color})
             setShowInput(!showInput)
-            setFormState(defaultState)
+            setStatus('')
         } else {
             setWarning(true)
         }
     }
 
     const inputChange = (e) => {
-        const {value, name} = e.target
-        setFormState(prevState => {
-            return {
-                ...prevState,
-                [name]: value
-            }
-        })
+        const {value} = e.target
+        setStatus(value)
         statuses.includes(value.toLowerCase().trimStart()) || !value ?
             setWarning(true) : setWarning(false)
     }
 
     const showNewBoardForm = () => {
-        setFormState(defaultState)
+        setStatus('')
         setShowInput(!showInput)
         setWarning(false)
     }
@@ -56,8 +47,8 @@ const NewBoard = ({dashBoard, dispatchDashBoard}) => {
                     <input type="text" placeholder='status' name='status' onChange={inputChange}
                            value={status} autoComplete='off'
                            className={warning ? style.input : ''}/>
-                    <ColorPicker defaultColor={color} status={status} name='color'
-                                 style={{zIndex: '10'}}/>
+                    <ColorPicker color={color} colorPickerChange={colorPickerChange}
+                                 clickHandler={clickHandler} showColorPicker={showColorPicker}/>
                     <button className={style.addBtn} disabled={warning}>Add</button>
                 </form>
             </section>
