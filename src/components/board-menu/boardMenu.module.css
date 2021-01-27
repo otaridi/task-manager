@@ -1,0 +1,103 @@
+/*.menuContainer{*/
+/*    position: relative;*/
+/*}*/
+.hamburger {
+    cursor: pointer;
+}
+
+.hamburger span {
+    display: block;
+    position: relative;
+    width: 16px;
+    margin-bottom: 4px;
+    height: 2px;
+    background-color: #3b3939;
+    z-index: 1;
+    transform-origin: 4px 0px;
+    transition: transform 0.1s cubic-bezier(0.77, 0.2, 0.05, 1.0),
+    background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0),
+    opacity 0.55s ease;
+}
+
+.hamburger span:first-child {
+    transform-origin: 0% 0%;
+}
+
+.hamburger span:nth-last-child(2) {
+    transform-origin: 0% 100%;
+}
+
+.animate span {
+    opacity: 1;
+    transform: rotate(45deg) translate(-5px, -5px);
+    background: #232323;
+}
+
+.animate span:nth-last-child(3) {
+    opacity: 0;
+    transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+.animate span:nth-last-child(2) {
+    transform: rotate(-45deg) translate(-4px, 6px);
+}
+
+.animate ul {
+    transform: none;
+}
+
+.menu {
+    position: absolute;
+    padding: 5px;
+    width: 140px;
+    background-color: #fafafa;
+    border: 1px solid gray;
+    box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.75);
+    border-radius: 2px;
+    top: 58px;
+    margin-left: -112px;
+    /*transition: 1s;*/
+    transition: transform 1s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+}
+
+.menu li {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 10px 0;
+    /*width: 100px;*/
+    padding: 5px;
+    border-bottom: 1px solid #cdcdcd;
+}
+
+.menu li:hover {
+    background-color: #d9d8d8;
+}
+.menu form input{
+    width: 80px;
+    padding-left: 5px;
+    height: 25px;
+    margin-right: 3px;
+    outline: none;
+}
+.input{
+    border: 1px solid red;
+    border-radius: 2px;
+}
+.menu form  button{
+    width: 35px;
+    height: 25px;
+    padding: 0;
+}
+.menu button {
+    width: 20px;
+    height: 20px;
+    border: 1px solid gray;
+    outline: none;
+    border-radius: 3px;
+}
+
+.menu .deleteBtn {
+    cursor: pointer;
+}

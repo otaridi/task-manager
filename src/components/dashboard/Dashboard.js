@@ -7,12 +7,12 @@ import DropWrapper from "../drop-wrapper/DropWrapper";
 import {useCart} from "../../context/cartContext";
 import * as actions from '../../context/reducers/cart-reducer/cartActions'
 import {filterCart} from "../../utilites/cartsFilterHelper";
-import ColorPicker from "../ColorPicker";
+import NewBoard from "../new-board/NewBoard";
+import BoardMenu from "../board-menu/BoardMenu";
 
 
 const Dashboard = () => {
     const {cart, dispatch, cartFilter, dashBoard, dispatchDashBoard} = useCart()
-
     const onDrop = (item, monitor, status) => {
         dispatch({
             type: actions.DROP,
@@ -32,36 +32,43 @@ const Dashboard = () => {
     const {searchState, startDate, endDate} = cartFilter
     const carts = filterCart(cart, searchState, startDate, endDate)
 
-    return (
-        <DndProvider backend={HTML5Backend}>
-            <div className={style.dashboardContainer}>
-                {
-                    dashBoard.map(el => {
-                        return <div className={style.board} key={el.status}>
-                            <section className={style.dashBoardHeader}>
-                                <h2>{el.status.toUpperCase()}</h2>
-                                <ColorPicker defaultColor={el.color} status={el.status}
-                                             dispatchDashBoard={dispatchDashBoard}
-                                />
-                            </section>
-                            <DropWrapper dashBoard={dashBoard} onDrop={onDrop} status={el.status}
-                                         color={el.color}>
-                                {
-                                    carts.filter(i => i.status === el.status)
-                                        .map((item, index) => {
-                                            return <Cart key={item.id} item={item}
-                                                         index={index}
-                                                         moveItem={moveItem}
-                                            />
-                                        })
-                                }
-                            </DropWrapper>
-                        </div>
-                    })
-                }
-            </div>
-        </DndProvider>
+    const cartStatuses = cart.map(el => el.status)
 
+    return (
+        <div>
+            {dashBoard.length < 6 ?
+                <NewBoard dispatchDashBoard={dispatchDashBoard} dashBoard={dashBoard}/> : null
+            }
+            <DndProvider backend={HTML5Backend}>
+                <div
+                    className={dashBoard.length > 3 ? style.dashboardContainer : style.dashBoardGrid}>
+                    {
+                        dashBoard.map(el => {
+                            return <div className={style.board} key={el.status}>
+                                <section className={style.dashBoardHeader}>
+                                    <h2>{el.status.toUpperCase()}</h2>
+                                    <BoardMenu board={el} dispatchDashBoard={dispatchDashBoard}
+                                               cartStatuses={cartStatuses} dashBoard={dashBoard}/>
+                                </section>
+                                <DropWrapper dashBoard={dashBoard} onDrop={onDrop}
+                                             status={el.status}
+                                             color={el.color}>
+                                    {
+                                        carts.filter(i => i.status === el.status)
+                                            .map((item, index) => {
+                                                return <Cart key={item.id} item={item}
+                                                             index={index}
+                                                             moveItem={moveItem}
+                                                />
+                                            })
+                                    }
+                                </DropWrapper>
+                            </div>
+                        })
+                    }
+                </div>
+            </DndProvider>
+        </div>
     )
 }
 

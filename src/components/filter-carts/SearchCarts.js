@@ -44,7 +44,7 @@ const SearchCarts = () => {
     return (
         <div className={style.searchContainer}>
             <section className={style.searchField}>
-                <input type="search" placeholder='Search by title' value={searchState}
+                <input type="search" placeholder='Search task' value={searchState}
                        onChange={(e) => setSearchState(e.target.value)}
                        title='Filter by title'
                 />
